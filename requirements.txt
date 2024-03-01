@@ -1,0 +1,4 @@
+Flask==2.2.5
+flask_cors==4.0.0
+joblib
+Gunicorn
