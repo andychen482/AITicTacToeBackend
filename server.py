@@ -13,6 +13,7 @@ CORS(app)
 def predict():
     data = request.get_json(force=True)
     prediction = model.predict([data['gameState']])
+    # print(prediction)
     return jsonify({'prediction': round(prediction[0])})
 
 # for local testing
