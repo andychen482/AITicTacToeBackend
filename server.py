@@ -1,4 +1,4 @@
-from python_speech_features import mfcc, delta
+from base import mfcc, delta
 from scipy.io import wavfile
 import numpy as np
 
@@ -8,7 +8,7 @@ from joblib import load
 
 # Load the model
 model = load('model.joblib')
-model2 = load('model2.joblib')
+model2 = load('pdmodel.joblib')
 
 
 app = Flask(__name__)
