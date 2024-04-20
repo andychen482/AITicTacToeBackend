@@ -72,7 +72,7 @@ def extract_features_and_labels(audio_path):
     return combined_features, feature_labels
 
 @app.route('/pdprediction', methods=['POST'])
-def predict():
+def pdpredict():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'})
     file = request.files['file']
