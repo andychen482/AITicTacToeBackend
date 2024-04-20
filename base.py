@@ -56,9 +56,9 @@ def fbank(signal,samplerate=16000,winlen=0.025,winstep=0.01,
         second return value is the energy in each frame (total energy, unwindowed)
     """
     highfreq= highfreq or samplerate/2
-    signal = sigproc.preemphasis(signal,preemph)
-    frames = sigproc.framesig(signal, winlen*samplerate, winstep*samplerate, winfunc)
-    pspec = sigproc.powspec(frames,nfft)
+    signal = preemphasis(signal,preemph)
+    frames = framesig(signal, winlen*samplerate, winstep*samplerate, winfunc)
+    pspec = powspec(frames,nfft)
     energy = numpy.sum(pspec,1) # this stores the total energy in each frame
     energy = numpy.where(energy == 0,numpy.finfo(float).eps,energy) # if energy is zero, we get problems with log
 
@@ -104,9 +104,9 @@ def ssc(signal,samplerate=16000,winlen=0.025,winstep=0.01,
     :returns: A numpy array of size (NUMFRAMES by nfilt) containing features. Each row holds 1 feature vector.
     """
     highfreq= highfreq or samplerate/2
-    signal = sigproc.preemphasis(signal,preemph)
-    frames = sigproc.framesig(signal, winlen*samplerate, winstep*samplerate, winfunc)
-    pspec = sigproc.powspec(frames,nfft)
+    signal = preemphasis(signal,preemph)
+    frames = framesig(signal, winlen*samplerate, winstep*samplerate, winfunc)
+    pspec = powspec(frames,nfft)
     pspec = numpy.where(pspec == 0,numpy.finfo(float).eps,pspec) # if things are all zeros we get problems
 
     fb = get_filterbanks(nfilt,nfft,samplerate,lowfreq,highfreq)
